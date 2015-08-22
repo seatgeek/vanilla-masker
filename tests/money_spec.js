@@ -144,36 +144,32 @@ describe("VanillaMasker.unmaskMoney", function() {
   });
 });
 
-describe('VanillaMasker.floatToMoneyString', function() {
+describe('VanillaMasker.numbersFromMaskedMoney', function() {
   it('can convert 0.12 to the keystrokes "12"', function() {
-    expect(VMasker.floatToMoneyString(0.12)).toEqual('12');
+    expect(VMasker.numbersFromMaskedMoney('0.12')).toEqual('12');
   });
 
   it('can convert 0.00 to an empty string', function() {
-    expect(VMasker.floatToMoneyString(0.00)).toEqual('');
+    expect(VMasker.numbersFromMaskedMoney('0.00')).toEqual('');
   });
 
   it('can convert 0 to an empty string', function() {
-    expect(VMasker.floatToMoneyString(0)).toEqual('');
+    expect(VMasker.numbersFromMaskedMoney('0')).toEqual('');
   });
 
   it('can convert 120.00 to the keystrokes "12000"', function() {
-    expect(VMasker.floatToMoneyString(120.00)).toEqual('12000');
+    expect(VMasker.numbersFromMaskedMoney('120.00')).toEqual('12000');
   });
 
   it('can convert 120 to the keystrokes "12000"', function() {
-    expect(VMasker.floatToMoneyString(120)).toEqual('12000');
-  });
-
-  it('can convert 120 to the keystrokes "12000"', function() {
-    expect(VMasker.floatToMoneyString(120)).toEqual('12000');
+    expect(VMasker.numbersFromMaskedMoney('120')).toEqual('120');
   });
 
   it('can truncate if precision is insufficient', function() {
-    expect(VMasker.floatToMoneyString(123.45678)).toEqual('12346');
+    expect(VMasker.numbersFromMaskedMoney('123.45678')).toEqual('12345678');
   });
 
-  it('can work with a higher precision', function() {
-    expect(VMasker.floatToMoneyString(123, {precision: 5})).toEqual('12300000');
+  it('can work with a prefix unit', function() {
+    expect(VMasker.numbersFromMaskedMoney('$ 123.45678', {unit: '$'})).toEqual('12345678');
   });
 });
