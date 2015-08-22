@@ -149,6 +149,10 @@ describe('VanillaMasker.numbersFromMaskedMoney', function() {
     expect(VMasker.numbersFromMaskedMoney('0.12')).toEqual('12');
   });
 
+  it('can convert the number 0.03 to the keystrokes "12"', function() {
+    expect(VMasker.numbersFromMaskedMoney(0.03)).toEqual('3');
+  });
+
   it('can convert 0.00 to an empty string', function() {
     expect(VMasker.numbersFromMaskedMoney('0.00')).toEqual('');
   });
