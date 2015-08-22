@@ -142,5 +142,38 @@ describe("VanillaMasker.unmaskMoney", function() {
   it('returns 100000000 when zeroCents is true', function() {
     expect(VMasker.unmaskMoney('100.000.000,00', {zeroCents: true})).toEqual(100000000);
   });
+});
 
+describe('VanillaMasker.floatToMoneyString', function() {
+  it('can convert 0.12 to the keystrokes "12"', function() {
+    expect(VMasker.floatToMoneyString(0.12)).toEqual('12');
+  });
+
+  it('can convert 0.00 to an empty string', function() {
+    expect(VMasker.floatToMoneyString(0.00)).toEqual('');
+  });
+
+  it('can convert 0 to an empty string', function() {
+    expect(VMasker.floatToMoneyString(0)).toEqual('');
+  });
+
+  it('can convert 120.00 to the keystrokes "12000"', function() {
+    expect(VMasker.floatToMoneyString(120.00)).toEqual('12000');
+  });
+
+  it('can convert 120 to the keystrokes "12000"', function() {
+    expect(VMasker.floatToMoneyString(120)).toEqual('12000');
+  });
+
+  it('can convert 120 to the keystrokes "12000"', function() {
+    expect(VMasker.floatToMoneyString(120)).toEqual('12000');
+  });
+
+  it('can truncate if precision is insufficient', function() {
+    expect(VMasker.floatToMoneyString(123.45678)).toEqual('12346');
+  });
+
+  it('can work with a higher precision', function() {
+    expect(VMasker.floatToMoneyString(123, {precision: 5})).toEqual('12300000');
+  });
 });
