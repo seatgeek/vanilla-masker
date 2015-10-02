@@ -52,6 +52,14 @@ describe("VanillaMasker.toPattern", function() {
     expect(VMasker.toPattern(12122000, '99/99/9999')).toEqual('12/12/2000');
   });
 
+  it('returns "123/" pattern when input is 123/ and pattern is 999/99/9999', function() {
+    expect(VMasker.toPattern("123/", '999/99/9999')).toEqual('123/');
+  });
+
+  it('returns "123/21/1234" pattern when input is 123/ and pattern is 999/99/9999', function() {
+    expect(VMasker.toPattern("123/21/1234/", '999/99/9999')).toEqual('123/21/1234');
+  });
+
   it('returns "10/11" pattern when input is 1011', function() {
     expect(VMasker.toPattern('1011', '99/99/9999')).toEqual('10/11');
   });
