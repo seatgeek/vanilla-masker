@@ -1,6 +1,6 @@
 {
   "name": "seatgeek-vanilla-masker",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "VanillaMasker is a pure javascript input mask.",
   "main": "lib/vanilla-masker.js",
   "scripts": {
